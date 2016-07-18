@@ -14,9 +14,16 @@ namespace ToDo.Models
     
     public partial class List
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public List()
+        {
+            this.Items = new HashSet<Item>();
+        }
+    
         public int ListID { get; set; }
         public string ListTitle { get; set; }
     
-        public virtual Item Item { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

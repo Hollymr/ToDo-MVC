@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5ad00e9e1d5d40e9820093ccf0ffea2d" Name="Diagram1">
-        <EntityTypeShape EntityType="ToDodbModel.Item" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToDodbModel.List" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="ToDodbModel.FK_Items_Lists" ManuallyRouted="false" />
+      <Diagram DiagramId="1f620996acd44945a88db8d19250aa7b" Name="Diagram1">
+        <EntityTypeShape EntityType="ToDodbModel.Item" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="ToDodbModel.List" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="ToDodbModel.FK_Items_Lists" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

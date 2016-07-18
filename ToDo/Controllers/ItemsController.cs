@@ -12,7 +12,7 @@ namespace ToDo.Controllers
 {
     public class ItemsController : Controller
     {
-        private ToDodbEntities db = new ToDodbEntities();
+        private ToDodbEntities2 db = new ToDodbEntities2();
 
         // GET: Items
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace ToDo.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.ItemID = new SelectList(db.Lists, "ListID", "ListTitle");
+            ViewBag.ListID = new SelectList(db.Lists, "ListID", "ListTitle");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ToDo.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ItemID = new SelectList(db.Lists, "ListID", "ListTitle", item.ItemID);
+            ViewBag.ListID = new SelectList(db.Lists, "ListID", "ListTitle", item.ListID);
             return View(item);
         }
 
@@ -73,7 +73,7 @@ namespace ToDo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemID = new SelectList(db.Lists, "ListID", "ListTitle", item.ItemID);
+            ViewBag.ListID = new SelectList(db.Lists, "ListID", "ListTitle", item.ListID);
             return View(item);
         }
 
@@ -90,7 +90,7 @@ namespace ToDo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ItemID = new SelectList(db.Lists, "ListID", "ListTitle", item.ItemID);
+            ViewBag.ListID = new SelectList(db.Lists, "ListID", "ListTitle", item.ListID);
             return View(item);
         }
 

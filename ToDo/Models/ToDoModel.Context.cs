@@ -13,10 +13,10 @@ namespace ToDo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ToDodbEntities : DbContext
+    public partial class ToDodbEntities2 : DbContext
     {
-        public ToDodbEntities()
-            : base("name=ToDodbEntities")
+        public ToDodbEntities2()
+            : base("name=ToDodbEntities2")
         {
         }
     
