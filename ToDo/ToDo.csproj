@@ -309,16 +309,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Lists\Create.cshtml" />
-    <Content Include="Views\Lists\Delete.cshtml" />
-    <Content Include="Views\Lists\Details.cshtml" />
-    <Content Include="Views\Lists\Edit.cshtml" />
-    <Content Include="Views\Lists\Index.cshtml" />
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\Delete.cshtml" />
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Lists\Create.cshtml" />
+    <Content Include="Views\Lists\Delete.cshtml" />
+    <Content Include="Views\Lists\Details.cshtml" />
+    <Content Include="Views\Lists\Edit.cshtml" />
+    <Content Include="Views\Lists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

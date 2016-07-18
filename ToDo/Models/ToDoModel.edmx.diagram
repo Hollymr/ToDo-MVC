@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f620996acd44945a88db8d19250aa7b" Name="Diagram1">
-        <EntityTypeShape EntityType="ToDodbModel.Item" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="ToDodbModel.List" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ToDodbModel.List" Width="1.5" PointX="4" PointY="2" />
+        <EntityTypeShape EntityType="ToDodbModel.Item" Width="1.5" PointX="6.25" PointY="1.625" />
         <AssociationConnector Association="ToDodbModel.FK_Items_Lists" />
       </Diagram>
     </edmx:Diagrams>

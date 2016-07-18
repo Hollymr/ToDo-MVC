@@ -25,7 +25,7 @@ namespace ToDo.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<List> Lists { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
     }
 }

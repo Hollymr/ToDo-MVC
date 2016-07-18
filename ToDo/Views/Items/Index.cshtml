@@ -12,17 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TaskName)
+            @Html.DisplayNameFor(model => model.IsDone)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListID)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.DueDateTime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Details)
         </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.List.ListTitle)
         </th>
@@ -32,17 +31,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TaskName)
+            <a href="@Url.Action("ToggleDone", new { id=item.ItemID })">
+                @if (item.IsDone)
+                {
+                    <span class="glyphicon glyphicon-check"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-unchecked"></span>
+                }
+            </a>           
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ListID)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.DueDateTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Details)
         </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.List.ListTitle)
         </td>

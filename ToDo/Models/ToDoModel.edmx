@@ -14,6 +14,7 @@
           <Property Name="ListID" Type="int" Nullable="false" />
           <Property Name="DueDateTime" Type="datetime" />
           <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Lists">
           <Key>
@@ -47,13 +48,21 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ToDodbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ToDodbEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Items" EntityType="ToDodbModel.Item" />
           <EntitySet Name="Lists" EntityType="ToDodbModel.List" />
+          <EntitySet Name="Items" EntityType="ToDodbModel.Item" />
           <AssociationSet Name="FK_Items_Lists" Association="ToDodbModel.FK_Items_Lists">
             <End Role="List" EntitySet="Lists" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="ToDodbModel.FK_Items_Lists" FromRole="List" ToRole="Item" />
+        </EntityType>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="ItemID" />
@@ -63,15 +72,8 @@
           <Property Name="ListID" Type="Int32" Nullable="false" />
           <Property Name="DueDateTime" Type="DateTime" Precision="3" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="List" Relationship="ToDodbModel.FK_Items_Lists" FromRole="Item" ToRole="List" />
-        </EntityType>
-        <EntityType Name="List">
-          <Key>
-            <PropertyRef Name="ListID" />
-          </Key>
-          <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ListTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Items" Relationship="ToDodbModel.FK_Items_Lists" FromRole="List" ToRole="Item" />
         </EntityType>
         <Association Name="FK_Items_Lists">
           <End Type="ToDodbModel.List" Role="List" Multiplicity="1" />
@@ -91,22 +93,23 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ToDodbModelStoreContainer" CdmEntityContainer="ToDodbEntities2">
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="ToDodbModel.Item">
-              <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="DueDateTime" ColumnName="DueDateTime" />
-                <ScalarProperty Name="ListID" ColumnName="ListID" />
-                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Lists">
             <EntityTypeMapping TypeName="ToDodbModel.List">
               <MappingFragment StoreEntitySet="Lists">
                 <ScalarProperty Name="ListTitle" ColumnName="ListTitle" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="ToDodbModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="DueDateTime" ColumnName="DueDateTime" />
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
