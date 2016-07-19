@@ -20,15 +20,66 @@
 
     </dl>
 </div>
-        @*// var item in list.Items*@
-     <ul>
-        @foreach (var item in Model.Items)
-    {
-        <li> @item.TaskName</li>
-    }
-</ul>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<table class="table">
+    <tr>
+        <th>
+            
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+           Details
+        </th>
+
+        <th>
+            List
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("ToggleDone", new { id=item.ItemID })">
+                    @if (item.IsDone)
+                {
+                        <span class="glyphicon glyphicon-check"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                    }
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.List.ListTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ItemID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemID })
+            </td>
+        </tr>
+    }
+    </table>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
