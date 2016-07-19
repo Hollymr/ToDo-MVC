@@ -20,6 +20,14 @@
 
     </dl>
 </div>
+        @*// var item in list.Items*@
+     <ul>
+        @foreach (var item in Model.Items)
+    {
+        <li> @item.TaskName</li>
+    }
+</ul>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
     @Html.ActionLink("Back to List", "Index")

@@ -16,9 +16,19 @@ namespace ToDo.Controllers
 
         // GET: Items
         public ActionResult Index()
-        {
-            var items = db.Items.Include(i => i.List);
-            return View(items.ToList());
+        {   // **.Include(i => i.List)** figure out what list they are apart of; foreach item get the list (not necessary!!) But will make it run
+            //faster for larger apps 
+            //var items = db.Items.Include(i => i.List); //takes items and passes them into the view 
+          
+
+            //ORDER BY ListID, DueDateTime
+            // LINQ!!!!!!! allows you to use SQL like syntax in c#
+            // n represents each row can also use i
+            var items = from n in db.Items
+                orderby n.ListID, n.DueDateTime
+                select n;
+
+            return View(items.ToList()); //ToList- takes it from database set and turns it into a c# list 
         }
 
         // GET: Items/Details/5
@@ -93,30 +103,35 @@ namespace ToDo.Controllers
             ViewBag.ListID = new SelectList(db.Lists, "ListID", "ListTitle", item.ListID);
             return View(item);
         }
+
+        //public ActionResult SetDone(int? id, bool newDoneValue)
+        //{
+
+        //}
+
+
         //to check IsDone box
         public ActionResult ToggleDone(int? id)
         {
-            if (id == null)
+            if (id == null)// if you just go to webpage ToggleDone sends error 
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            Item item = db.Items.Find(id);// looks for item with that id 
             if (item == null)
             {
                 return HttpNotFound();
             }
-            if (item.IsDone)
+            if (item.IsDone) //treating it as a standard c# object 
             {
                 item.IsDone = false;
             }
             else
             {
                 item.IsDone = true;
-            }
-
-                
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            }                
+                db.SaveChanges(); //save back into database; the save all
+                return RedirectToAction("Index"); //refresh page
             }
            
         

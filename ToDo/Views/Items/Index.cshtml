@@ -14,7 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.IsDone)
         </th>
-       
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.DueDateTime)
         </th>
@@ -41,6 +43,9 @@
                     <span class="glyphicon glyphicon-unchecked"></span>
                 }
             </a>           
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskName)
         </td>
         
         <td>
